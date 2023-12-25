@@ -1,30 +1,35 @@
 /*-------------------- packages --------------------*/
 package model.entities;
 
+/*-------------------- libraries --------------------*/
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /*-------------------- class Seller --------------------*/
-public class Seller {
+public class Seller implements Serializable {
 
 	/*-------------------- attributes --------------------*/
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private String email;
 	private Date birth_date;
 	private Double base_salary;
-	
+	private Department department; // association composition
+
 	/*-------------------- constructors --------------------*/
 	public Seller() {
 		//
 	}
 
-	public Seller(Integer id, String name, String email, Date birth_date, Double base_salary) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.birth_date = birth_date;
-		this.base_salary = base_salary;
+	public Seller(Integer id, String name, String email, Date birth_date, Double base_salary, Department department) {
+		this.setId(id);
+		this.setName(name);
+		this.setEmail(email);
+		this.setBirthDate(birth_date);
+		this.setBaseSalary(base_salary);
+		this.setDepartment(department);
 	}
 
 	/*-------------------- getters and setters --------------------*/
@@ -68,6 +73,14 @@ public class Seller {
 		this.base_salary = base_salary;
 	}
 
+	public Department getDepartment() {
+		return this.department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	/*-------------------- methods --------------------*/
 	@Override
 	public int hashCode() {
@@ -76,19 +89,20 @@ public class Seller {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
 		Seller other = (Seller) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(this.getId(), other.getId());
 	}
 
 	@Override
 	public String toString() {
 		return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birth_date=" + birth_date
-				+ ", base_salary=" + base_salary + "]";
+				+ ", base_salary=" + base_salary + ", department=" + department + "]";
+	}
+
+	public void printSeller() {
+		System.out.println(toString());
 	}
 }
