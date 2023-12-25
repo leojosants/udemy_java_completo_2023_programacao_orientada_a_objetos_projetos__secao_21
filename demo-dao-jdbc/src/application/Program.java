@@ -4,6 +4,8 @@ package application;
 /*-------------------- libraries --------------------*/
 import java.util.Date;
 
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 /*-------------------- modules --------------------*/
 import model.entities.Department;
 import model.entities.Seller;
@@ -35,6 +37,7 @@ public class Program {
 	private static void runProgram() {
 		Department department = generateInstanceDepartment(generateId(), "Livros");
 		Seller seller = generateInstanceSeller(generateId(), "Bob", "bob@gmail.com", generateInstanceDate(), 3000.0, department);
+		SellerDao seller_dao = DaoFactory.createSellerDao();
 		seller.printSeller();
 	}
 	
