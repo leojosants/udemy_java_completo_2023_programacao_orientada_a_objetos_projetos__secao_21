@@ -1,8 +1,8 @@
 /*-------------------- packages --------------------*/
 package application;
 
-import java.util.Date;
 /*-------------------- libraries --------------------*/
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -61,6 +61,14 @@ public class Program {
 		System.out.printf("Inserido! Novo Id ...: %d%n", seller.getId());
 	}
 	
+	private static void test05(SellerDao seller_dao) {
+		System.out.println("\n--- TEST 5: seller update ---");
+		Seller seller = seller_dao.findById(1);
+		seller.setName("Marta Waine");
+		seller_dao.update(seller);
+		System.out.println("Atualização concluida!");
+	}
+	
 	private static void displayMessageEndProgram() {
 		System.out.println("---> fim do programa <---");
 	}
@@ -72,6 +80,7 @@ public class Program {
 		test02(seller_dao);
 		test03(seller_dao);
 		test04(seller_dao);
+		test05(seller_dao);
 	}
 	
 	/*-------------------- main method --------------------*/

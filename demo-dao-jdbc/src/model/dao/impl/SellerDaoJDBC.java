@@ -3,7 +3,6 @@ package model.dao.impl;
 
 /*-------------------- libraries --------------------*/
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.sql.StatementEventListener;
 
 /*-------------------- modules --------------------*/
 import db.DB;
@@ -77,9 +74,29 @@ public class SellerDaoJDBC implements SellerDao {
 
 
 	@Override
-	public void update(Seller department) {
-		// TODO Auto-generated method stub
-		
+	public void update(Seller obj) {
+		PreparedStatement prepared_statement = null;
+		try {
+			prepared_statement = connection.prepareStatement(
+				"UPDATE seller " +
+				"SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? " +
+				"WHERE Id = ?"
+			);
+			
+			prepared_statement.setString(1, obj.getName());
+			prepared_statement.setString(2, obj.getEmail());
+			prepared_statement.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
+			prepared_statement.setDouble(4, obj.getBaseSalary());
+			prepared_statement.setInt(5, obj.getDepartment().getId());
+			prepared_statement.setInt(6, obj.getId());
+			prepared_statement.executeUpdate();
+		} 
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(prepared_statement);
+		}
 	}
 
 	@Override
