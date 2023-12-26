@@ -58,7 +58,8 @@ public class Department implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + "]";
+		return String.format("Id: %d, ", this.getId()) +
+			   String.format("Nome: %s", this.getName());
 	}
 	
 	public void printDepartment() {
