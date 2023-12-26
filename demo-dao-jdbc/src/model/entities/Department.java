@@ -1,6 +1,7 @@
 /*-------------------- packages --------------------*/
 package model.entities;
 
+/*-------------------- libraries --------------------*/
 import java.io.Serializable;
 import java.util.Objects;
 
