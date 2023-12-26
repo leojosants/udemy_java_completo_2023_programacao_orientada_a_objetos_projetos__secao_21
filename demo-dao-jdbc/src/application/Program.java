@@ -5,6 +5,7 @@ package application;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 /*-------------------- modules --------------------*/
 import model.dao.DaoFactory;
@@ -32,6 +33,26 @@ public class Program {
 	
 	private static Date instanceateDate() {
 		return new Date();
+	}
+	
+	private static Scanner instaceateScanner() {
+		return new Scanner(System.in);
+	}
+	
+	private static Integer requestIdDelete(Scanner scanner) {
+		Integer id = null;
+		
+		System.out.print("Entre com o id para deletar ..: ");
+		id = scanner.nextInt();
+		scanner.nextLine(); // buffer
+		
+		while (id <= 0) {
+			System.out.print("-> Valor inválido, tente novamente! Entre com o id para deletar ..: ");
+			id = scanner.nextInt();
+			scanner.nextLine(); // buffer
+		}
+		
+		return id;
 	}
 	
 	private static void test01(SellerDao seller_dao) {
@@ -69,8 +90,17 @@ public class Program {
 		System.out.println("Atualização concluida!");
 	}
 	
+	private static void test06(SellerDao seller_dao) {
+		System.out.println("\n--- TEST 6: seller delet ---");
+		Scanner scanner = instaceateScanner();
+		Integer id = requestIdDelete(scanner);
+		seller_dao.deleteById(id);
+		System.out.println("Deleção concluida!");
+		scanner.close();
+	}
+	
 	private static void displayMessageEndProgram() {
-		System.out.println("---> fim do programa <---");
+		System.out.println("\n---> fim do programa <---");
 	}
 
 	private static void runProgram() {
@@ -81,6 +111,7 @@ public class Program {
 		test03(seller_dao);
 		test04(seller_dao);
 		test05(seller_dao);
+		test06(seller_dao);
 	}
 	
 	/*-------------------- main method --------------------*/
