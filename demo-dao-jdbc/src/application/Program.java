@@ -34,8 +34,16 @@ public class Program {
 		});
 	}
 	
+	private static void test03(SellerDao seller_dao) {
+		System.out.println("--- TEST 3: seller findAll ---");
+		List<Seller> seller_list = seller_dao.findAll();
+		seller_list.forEach(seller -> {
+			seller.printSeller();
+		});
+	}
+	
 	private static void displayMessageEndProgram() {
-		System.out.println("\n---> fim do programa <---");
+		System.out.println("---> fim do programa <---");
 	}
 
 	private static void runProgram() {
@@ -43,6 +51,7 @@ public class Program {
 		SellerDao seller_dao = DaoFactory.createSellerDao();
 		test01(seller_dao);
 		test02(seller_dao);
+		test03(seller_dao);
 	}
 	
 	/*-------------------- main method --------------------*/
