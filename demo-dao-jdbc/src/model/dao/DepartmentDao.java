@@ -11,8 +11,8 @@ import model.entities.Department;
 public interface DepartmentDao {
 
 	/*-------------------- methods --------------------*/
-	public void insert(Department department);
-	public void update(Department department);
+	public void insert(Department obj);
+	public void update(Department obj);
 	public void deleteById(Integer id);
 	public Department findById(Integer id);
 	public List<Department> findAll();

@@ -72,7 +72,6 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 
-
 	@Override
 	public void update(Seller obj) {
 		PreparedStatement prepared_statement = null;
